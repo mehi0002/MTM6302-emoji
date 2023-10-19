@@ -53,6 +53,12 @@ p, code {
     padding: 0.5rem;
 }
 
+.title{
+	font-size: 4rem;
+	text-align: center;
+	margin: 1rem;
+}
+
 /* Flexbox containers with centered content */
 .container{
 	/* Content Flow */
