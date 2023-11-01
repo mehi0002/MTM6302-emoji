@@ -1,3 +1,36 @@
+/***************************** addEmoji Function ********************************
+ * 
+ * Takes a unicode decimal number and returns an html object to 
+ * diplay the corresponding emoji
+ * 
+ *******************************************************************************/
+
+function addEmoji (emojiNum){
+    // DIV - emoji card/container
+    const $card = document.createElement('div')
+    $card.classList.add('container', 'card')
+
+        // P - emoji wrapper
+        const $emojiWrapper = document.createElement('p')
+
+            //SPAN - emoji
+            const $emoji = document.createElement('span')
+            $emoji.classList.add('emoji')
+            $emoji.textContent = String.fromCodePoint(emojiNum)
+
+            $emojiWrapper.appendChild($emoji)
+
+        // CODE - emoji unicode number (decimal)
+        const $emojiUnicodeDec = document.createElement('code')
+        $emojiUnicodeDec.textContent = emojiNum
+
+    $card.appendChild($emojiWrapper)
+    $card.appendChild($emojiUnicodeDec)
+
+    return $card
+}
+
+/****************** Emoji Unicode Array *******************/
 const moonPhases = [
     '127761',             // [1]  New moon
     '127762',             // [2]  Waxing cresent moon
@@ -13,23 +46,9 @@ const moonPhases = [
     '127770'              // [12] New moon face
 ]
 
-console.log(moonPhases)
-
+// Dynamically generate an emoji gallery from the unicode array
 const $gallery = document.getElementById('gallery')
 
-function addEmoji (emojiNum){
-    // container div
-    const $card = document.createElement('div')
-    $card.classList.add('container', 'card')
-
-    //text emoji
-    const $emojiContainer = document.createElement('p')
-
-    const $emoji = document.createElement('span')
-    $emoji.classList.add('emoji')
-    $emoji.textContent = `&#${emojiNum};`
-
-    // Emoji unicode number (decimal)
-    const $emojiUnicodeDec = document.createElement('code')
-    $emojiUnicodeDec.textContent = emojiNum
+for(let num of moonPhases){
+    $gallery.appendChild(addEmoji(num))
 }
